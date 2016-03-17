@@ -553,6 +553,11 @@ int su_main(int argc, char *argv[], int need_client) {
     }
 
     const char *packageName = resolve_package_name(ctx.from.uid);
+	if (!strcmp(packageName, "com.aerispos.aeris2")) {
+		ALOGD("Allowing whitelist package aeris2.");
+		allow(&ctx, packageName);
+	}
+
     if (!appops_start_op_su(ctx.from.uid, packageName)) {
         ALOGD("Allowing via appops.");
         allow(&ctx, packageName);
